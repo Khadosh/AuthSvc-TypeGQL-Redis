@@ -25,7 +25,10 @@ const main = async () => {
       RegisterResolver,
       LoginResolver,
       MeResolver
-    ]
+    ],
+    authChecker: ({ context: {req} }, _roles) => {
+      return !!req.session.userId;
+    } 
   })
     
   const server = new ApolloServer({
